@@ -24,13 +24,4 @@ jobs:
     - name: Build
       run: dotnet build --no-restore ./FrontendBFF 
     - name: Test
-      run: dotnet test --no-build --verbosity normal ./FrontendBFF 
-Footer
-© 2022 GitHub, Inc.
-Footer navigation
-Terms
-Privacy
-Security
-Status
-Docs
-C
+      run: dotnet test --no-build --verbosity normal ./FrontendBFF
