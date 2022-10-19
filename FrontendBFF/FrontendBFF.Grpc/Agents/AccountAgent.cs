@@ -1,10 +1,11 @@
-﻿using Grpc.Net.Client;
+﻿using FrontendBFF.Grpc.Agents.Interfaces;
+using Grpc.Net.Client;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 
 namespace FrontendBFF.Grpc.Agents;
 
-public class AccountAgent
+public class AccountAgent : IAccountAgent
 {
     private readonly string _address;
     private readonly ILogger<AccountAgent> _logger;
