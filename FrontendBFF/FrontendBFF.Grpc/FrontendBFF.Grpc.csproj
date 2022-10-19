@@ -15,4 +15,15 @@
       </PackageReference>
     </ItemGroup>
 
+    <ItemGroup>
+      <None Remove="Protos\AccountService.proto" />
+      <Protobuf Include="Protos\AccountService.proto">
+        <Generator>MSBuild:Compile</Generator>
+      </Protobuf>
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\FrontendBFF.Dal\FrontendBFF.Dal.csproj" />
+    </ItemGroup>
+
 </Project>

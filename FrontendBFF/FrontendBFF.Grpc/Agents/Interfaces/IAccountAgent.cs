@@ -2,5 +2,5 @@
 
 public interface IAccountAgent
 {
-    
+    Task<AccountResponse> CreateAccount(CreateAccountRequest account);
 }
