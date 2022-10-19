@@ -8,7 +8,6 @@ service AccountService{
 }
 
 message CreateAccountRequest {
-  int64 profileId = 1;
   string email = 2;
   string username = 3;
 }
