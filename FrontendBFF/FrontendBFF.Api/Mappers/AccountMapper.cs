@@ -26,4 +26,23 @@ public static class AccountMapper
             Username = account.Username
         };
     }
+    
+    public static ChangeUsernameDto AccountTochangeUsernameDto(Account account)
+    {
+        return new()
+        {
+            AccountId = account.Id,
+            Username = account.Username
+        };
+    }
+    
+    public static string ChangeUsernameDtoToUsername(ChangeUsernameDto usernameDto)
+    {
+        return usernameDto.Username;
+    }
+    
+    public static long ChangeUsernameDtoToAccountId(ChangeUsernameDto usernameDto)
+    {
+        return usernameDto.AccountId;
+    }
 }

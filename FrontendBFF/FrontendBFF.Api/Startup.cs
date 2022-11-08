@@ -83,6 +83,7 @@ public class Startup
                         builder
                             .AllowCredentials()
                             .AllowAnyHeader()
+                            .AllowAnyMethod()
                             .WithOrigins(
                                 "https://kantilever.store",
                                 "https://backoffice.kantilever.store",

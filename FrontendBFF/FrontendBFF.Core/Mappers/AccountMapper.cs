@@ -50,4 +50,13 @@ public static class AccountMapper
     {
         return response.Available;
     }
+
+    public static ChangeUsernameRequest IdAndUsernameToChangeUsernameRequest(long accountId, string username)
+    {
+        return new()
+        {
+            Id = accountId,
+            Username = username
+        };
+    }
 }

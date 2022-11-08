@@ -16,13 +16,6 @@ public class AccountAgent : IAccountAgent
         _logger = logger;
     }
 
-    public async Task<AccountResponse> CreateAccount(CreateAccountRequest account)
-    {
-        using var channel = GrpcChannel.ForAddress(_address);
-        var client = new AccountService.AccountServiceClient(channel);
-        return await client.CreateAccountAsync(account);
-    }
-
     public async Task<HasProfileResponse> HasProfile(HasProfileRequest request)
     {
         using var channel = GrpcChannel.ForAddress(_address);
@@ -35,5 +28,12 @@ public class AccountAgent : IAccountAgent
         using var channel = GrpcChannel.ForAddress(_address);
         var client = new AccountService.AccountServiceClient(channel);
         return await client.CheckAvailabilityUsernameAsync(request);
+    }
+
+    public async Task<AccountResponse> ChangeUsername(ChangeUsernameRequest request)
+    {
+        using var channel = GrpcChannel.ForAddress(_address);
+        var client = new AccountService.AccountServiceClient(channel);
+        return await client.ChangeUsernameAsync(request);
     }
 }

@@ -17,12 +17,6 @@ public class AccountService : IAccountService
         _accountAgent = accountAgent;   
     }
 
-    public async Task<Account> CreateAccount(Account account)
-    {
-        return await _accountRepository.CreateAsync(AccountMapper.AccountResponseToAccount(
-            await _accountAgent.CreateAccount(AccountMapper.AccountToCreateAccountRequest(account))));
-    }
-
     public async Task<bool> HasProfile(long accountId)
     {
         return AccountMapper.HasProfileResponseToBool(await _accountAgent.HasProfile(AccountMapper.IdToHasProfileRequest(accountId)));
@@ -31,5 +25,12 @@ public class AccountService : IAccountService
     public async Task<bool> CheckAvailabilityUsername(string username)
     {
          return AccountMapper.CheckUsernameAvailabilityResponseToBool(await _accountAgent.CheckAvailabilityUsername(AccountMapper.UsernameToCheckAvailabilityUsernameRequest(username)));
+    }
+
+    public async Task<Account> ChangeUsername(long accountId, string username)
+    {
+        return AccountMapper.AccountResponseToAccount(
+            await _accountAgent.ChangeUsername(
+                AccountMapper.IdAndUsernameToChangeUsernameRequest(accountId, username)));
     }
 }

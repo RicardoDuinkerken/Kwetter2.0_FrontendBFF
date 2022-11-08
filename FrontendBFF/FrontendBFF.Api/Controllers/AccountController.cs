@@ -22,25 +22,24 @@ public class AccountController : ControllerBase
         _accountService = accountService;
     }
 
-    [HttpPost]
+    [HttpPut]
+    [Route("changeUsername")]
+    [Consumes(MediaTypeNames.Application.Json)]
     [Produces(MediaTypeNames.Application.Json)]
-    [ProducesResponseType(typeof(AccountDto), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(ChangeUsernameDto[]), StatusCodes.Status200OK)]
     [ProducesResponseType(typeof(string), StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     [ProducesResponseType(typeof(string), StatusCodes.Status500InternalServerError)]
-    public async Task<IActionResult> Post([FromBody] AccountDto account)
+    public async Task<IActionResult> Put([FromBody] ChangeUsernameDto usernameDto)
     {
-        _logger.LogInformation("Post invoked");
-        if (!ModelState.IsValid)
-        {
-            return BadRequest(ModelState);
-        }
+        Console.WriteLine("test");
+        _logger.LogInformation("Put changeUsername invoked");
 
         try
         {
+            Console.WriteLine("test1");
             return Ok(
-                AccountMapper.AccountToAccountDto(await _accountService.CreateAccount(
-                    AccountMapper.AccountDtoToAccount(account))));
+                AccountMapper.AccountTochangeUsernameDto(await _accountService.ChangeUsername(AccountMapper.ChangeUsernameDtoToAccountId(usernameDto), AccountMapper.ChangeUsernameDtoToUsername(usernameDto))));
         }
         catch (Exception e)
         {
@@ -87,7 +86,11 @@ public class AccountController : ControllerBase
     public async Task<IActionResult> Get([FromRoute] string username)
     {
         _logger.LogInformation("Get UsernameAvailable Invoked with id: {Username}", username);
-
+        if (!ModelState.IsValid)
+        {
+            return BadRequest(ModelState);
+        }
+        
         try
         {
             return Ok(await _accountService.CheckAvailabilityUsername(username));
