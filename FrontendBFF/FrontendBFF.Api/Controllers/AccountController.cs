@@ -48,6 +48,56 @@ public class AccountController : ControllerBase
             return StatusCode(StatusCodes.Status500InternalServerError, e.Message);
         }
     }
+    
+    [HttpGet]
+    [Route("hasProfile/{id}")]
+    [Produces(MediaTypeNames.Application.Json)]
+    [ProducesResponseType(typeof(HasProfileDto), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(string), StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    [ProducesResponseType(typeof(string), StatusCodes.Status500InternalServerError)]
+    [ProducesResponseType(StatusCodes.Status501NotImplemented)]
+    public async Task<IActionResult> Get([FromRoute] long id)
+    {
+        _logger.LogInformation("Get hasProfile Invoked with id: {Id}", id);
+        if (id < 1)
+        {
+            return BadRequest($"Value of {nameof(id)} must be above 0");
+        }
+
+        try
+        {
+            return Ok(await _accountService.HasProfile(id));
+        }
+        catch (Exception e)
+        {
+            _logger.LogError("{E}", e);
+            return StatusCode(StatusCodes.Status500InternalServerError, e.Message);
+        }
+    }
+    
+    [HttpGet]
+    [Route("usernameAvailable/{username}")]
+    [Produces(MediaTypeNames.Application.Json)]
+    [ProducesResponseType(typeof(IsAvailableUsernameDto), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(string), StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    [ProducesResponseType(typeof(string), StatusCodes.Status500InternalServerError)]
+    [ProducesResponseType(StatusCodes.Status501NotImplemented)]
+    public async Task<IActionResult> Get([FromRoute] string username)
+    {
+        _logger.LogInformation("Get UsernameAvailable Invoked with id: {Username}", username);
+
+        try
+        {
+            return Ok(await _accountService.CheckAvailabilityUsername(username));
+        }
+        catch (Exception e)
+        {
+            _logger.LogError("{E}", e);
+            return StatusCode(StatusCodes.Status500InternalServerError, e.Message);
+        }
+    }
 
 
 }

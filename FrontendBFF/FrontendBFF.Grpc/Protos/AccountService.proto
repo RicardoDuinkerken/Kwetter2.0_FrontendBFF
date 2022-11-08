@@ -5,6 +5,9 @@ service AccountService{
   rpc CreateAccount (CreateAccountRequest) returns (AccountResponse);
   rpc UpdateAccount (UpdateAccountRequest) returns (AccountResponse);
   rpc DeleteAccount (DeleteAccountRequest) returns (DeleteAccountResponse);
+  rpc ChangeUsername (ChangeUsernameRequest) returns (AccountResponse);
+  rpc CheckAvailabilityUsername (CheckAvailabilityUsernameRequest) returns (CheckUsernameAvailabilityResponse);
+  rpc HasProfile (HasProfileRequest) returns (HasProfileResponse);
 }
 
 message CreateAccountRequest {
@@ -23,6 +26,15 @@ message DeleteAccountRequest {
   int64 id = 1;
 }
 
+message ChangeUsernameRequest {
+  int64 id = 1;
+  string username = 4;
+}
+
+message CheckAvailabilityUsernameRequest {
+  string username = 4;
+}
+
 message AccountResponse {
   int64 id = 1;
   int64 profileId = 2;
@@ -32,5 +44,17 @@ message AccountResponse {
 
 message DeleteAccountResponse {
   int64 id = 1;
+}
+
+message CheckUsernameAvailabilityResponse {
+  bool available = 1;
+}
+
+message HasProfileRequest {
+  int64 accountId = 1;
+}
+
+message HasProfileResponse {
+  bool hasProfile = 1;
 }
 

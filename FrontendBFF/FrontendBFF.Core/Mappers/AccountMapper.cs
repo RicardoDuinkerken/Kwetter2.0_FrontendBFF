@@ -24,4 +24,30 @@ public static class AccountMapper
             Username = response.Username
         };
     }
+
+    public static HasProfileRequest IdToHasProfileRequest(long id)
+    {
+        return new()
+        {
+            AccountId = id
+        };
+    }
+
+    public static bool HasProfileResponseToBool(HasProfileResponse response)
+    {
+        return response.HasProfile;
+    }
+
+    public static CheckAvailabilityUsernameRequest UsernameToCheckAvailabilityUsernameRequest(string username)
+    {
+        return new()
+        {
+            Username = username
+        };
+    }
+    
+    public static bool CheckUsernameAvailabilityResponseToBool(CheckUsernameAvailabilityResponse response)
+    {
+        return response.Available;
+    }
 }

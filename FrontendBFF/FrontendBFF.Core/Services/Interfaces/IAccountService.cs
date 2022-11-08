@@ -8,6 +8,8 @@ public interface IAccountService
     // Task<Account> GetAccountById(long id);
     // Task<Account> GetAccountByEmail(String email);
     Task<Account> CreateAccount(Account account);
+    Task<bool> HasProfile(long accountId);
+    Task<bool> CheckAvailabilityUsername(string username);
     // Task<Account> UpdateAccount(Account account);
     // Task<bool> DeleteAccount(Account account);
 }   

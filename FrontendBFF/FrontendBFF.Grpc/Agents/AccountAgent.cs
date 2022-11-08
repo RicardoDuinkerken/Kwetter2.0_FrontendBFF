@@ -22,4 +22,18 @@ public class AccountAgent : IAccountAgent
         var client = new AccountService.AccountServiceClient(channel);
         return await client.CreateAccountAsync(account);
     }
+
+    public async Task<HasProfileResponse> HasProfile(HasProfileRequest request)
+    {
+        using var channel = GrpcChannel.ForAddress(_address);
+        var client = new AccountService.AccountServiceClient(channel);
+        return await client.HasProfileAsync(request);
+    }
+
+    public async Task<CheckUsernameAvailabilityResponse> CheckAvailabilityUsername(CheckAvailabilityUsernameRequest request)
+    {
+        using var channel = GrpcChannel.ForAddress(_address);
+        var client = new AccountService.AccountServiceClient(channel);
+        return await client.CheckAvailabilityUsernameAsync(request);
+    }
 }

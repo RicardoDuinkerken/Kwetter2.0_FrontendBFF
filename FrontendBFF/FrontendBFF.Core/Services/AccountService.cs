@@ -22,4 +22,14 @@ public class AccountService : IAccountService
         return await _accountRepository.CreateAsync(AccountMapper.AccountResponseToAccount(
             await _accountAgent.CreateAccount(AccountMapper.AccountToCreateAccountRequest(account))));
     }
+
+    public async Task<bool> HasProfile(long accountId)
+    {
+        return AccountMapper.HasProfileResponseToBool(await _accountAgent.HasProfile(AccountMapper.IdToHasProfileRequest(accountId)));
+    }
+    
+    public async Task<bool> CheckAvailabilityUsername(string username)
+    {
+         return AccountMapper.CheckUsernameAvailabilityResponseToBool(await _accountAgent.CheckAvailabilityUsername(AccountMapper.UsernameToCheckAvailabilityUsernameRequest(username)));
+    }
 }
