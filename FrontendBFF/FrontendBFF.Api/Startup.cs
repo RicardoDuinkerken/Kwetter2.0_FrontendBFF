@@ -37,7 +37,7 @@ public class Startup
             string port = Configuration["Port"] ?? "3306";
             string username = Configuration["Username"] ?? "root";
             string password = Configuration["Password"] ?? "Geheim_101";
-            string database = Configuration["Database"] ?? "Account";
+            string database = Configuration["Database"] ?? "FrontendBFF";
             string connectionString = $"server={server};Port={port};user={username};password={password};database={database}";
 
             services.AddDbContext<FrontendBFFContext>(builder =>
@@ -102,6 +102,7 @@ public class Startup
                                 "http://localhost:5003",
                                 "https://localhost:5004",
                                 "http://localhost:5005",
+                                "http://localhost:5007",
                                 "http://localhost:5009",
                                 "https://localhost:5006");
                         

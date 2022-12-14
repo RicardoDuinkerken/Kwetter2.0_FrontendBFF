@@ -12,7 +12,7 @@ public class ProfileAgent : IProfileAgent
 
     public ProfileAgent(IConfiguration configuration, ILogger<ProfileAgent> logger)
     {
-        _address = configuration["ProfileService"] ?? "http://localhost:5009";
+        _address = configuration["ProfileService"] ?? "http://localhost:5007";
         _logger = logger;
     }
 
