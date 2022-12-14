@@ -50,15 +50,18 @@ public class Startup
             //repositories
             services.AddTransient<IAsyncRepository<Account, long>, BaseAsyncRepository<Account, long, FrontendBFFContext>>();
             services.AddTransient<IAsyncRepository<Profile, long>, BaseAsyncRepository<Profile, long, FrontendBFFContext>>();
+            services.AddTransient<IAsyncRepository<Kwet, long>, BaseAsyncRepository<Kwet, long, FrontendBFFContext>>();
             
             //services
             services.AddTransient<IAccountService, AccountService>();
             services.AddTransient<IProfileService, ProfileService>();
-
+            services.AddTransient<IKwetService, KwetService>();
+            
             //agents
             services.AddTransient<IAccountAgent, AccountAgent>();
             services.AddTransient<IProfileAgent, ProfileAgent>();
-
+            services.AddTransient<IKwetAgent, KwetAgent>();
+            
             //authentication
             string secret = Configuration.GetSection("AppSettings")["Secret"];
             services.AddAuthentication(configureOptions =>
