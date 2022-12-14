@@ -6,6 +6,8 @@ namespace FrontendBFF.Dal.Contexts;
 public class FrontendBFFContext : DbContext
 {
     public DbSet<Account> Accounts { get; set; }
+    public DbSet<Profile> Profiles { get; set; }
+    public DbSet<Kwet> Kwets { get; set; }
 
     public FrontendBFFContext()
     {

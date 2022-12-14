@@ -20,6 +20,10 @@
       <Protobuf Include="Protos\AccountService.proto">
         <Generator>MSBuild:Compile</Generator>
       </Protobuf>
+      <None Remove="Protos\ProfileService.proto" />
+      <Protobuf Include="Protos\ProfileService.proto" />
+      <None Remove="Protos\KwetService.proto" />
+      <Protobuf Include="Protos\KwetService.proto" />
     </ItemGroup>
 
     <ItemGroup>

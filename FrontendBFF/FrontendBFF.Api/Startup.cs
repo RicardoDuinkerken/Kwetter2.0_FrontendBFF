@@ -49,12 +49,15 @@ public class Startup
             
             //repositories
             services.AddTransient<IAsyncRepository<Account, long>, BaseAsyncRepository<Account, long, FrontendBFFContext>>();
-
+            services.AddTransient<IAsyncRepository<Profile, long>, BaseAsyncRepository<Profile, long, FrontendBFFContext>>();
+            
             //services
             services.AddTransient<IAccountService, AccountService>();
+            services.AddTransient<IProfileService, ProfileService>();
 
             //agents
             services.AddTransient<IAccountAgent, AccountAgent>();
+            services.AddTransient<IProfileAgent, ProfileAgent>();
 
             //authentication
             string secret = Configuration.GetSection("AppSettings")["Secret"];
@@ -96,6 +99,7 @@ public class Startup
                                 "http://localhost:5003",
                                 "https://localhost:5004",
                                 "http://localhost:5005",
+                                "http://localhost:5009",
                                 "https://localhost:5006");
                         
                     });

@@ -1,0 +1,33 @@
+﻿syntax = "proto3";
+option csharp_namespace = "FrontendBFF.Grpc";
+
+service KwetService{
+  rpc CreateKwet (CreateKwetRequest) returns (KwetResponse);
+  rpc UpdateKwet (UpdateKwetRequest) returns (KwetResponse);
+  rpc DeleteKwet (DeleteKwetRequest) returns (DeleteKwetResponse);
+}
+
+message CreateKwetRequest {
+  string username = 1;
+  string Content = 2;
+}
+
+message UpdateKwetRequest {
+  int64 id = 1;
+  string username = 2;
+  string Content = 3;
+}
+
+message DeleteKwetRequest {
+  int64 id = 1;
+}
+
+message KwetResponse {
+  int64 id = 1;
+  string username = 2;
+  string Content = 3;
+}
+
+message DeleteKwetResponse {
+  int64 id = 1;
+}
